@@ -1,0 +1,2 @@
+16:21:14.929 [http-nio-8989-exec-1] INFO  com.licenseservice.Service.LicenseService - using discovery client
+16:24:14.001 [http-nio-8989-exec-1] INFO  com.licenseservice.Service.LicenseService - using discovery client
