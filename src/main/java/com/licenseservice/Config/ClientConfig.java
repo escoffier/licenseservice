@@ -1,5 +1,6 @@
 package com.licenseservice.Config;
 
+import brave.propagation.CurrentTraceContext;
 import com.licenseservice.utils.UserContextInterceptor;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -28,4 +29,9 @@ public class ClientConfig {
 
         return restTemplate;
     }
+
+//    @Bean
+//    CurrentTraceContext log4jTraceContext() {
+//        return MDCCurrentTraceContext.create();
+//    }
 }

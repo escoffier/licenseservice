@@ -5,3 +5,8 @@
 19:53:59.790 [http-nio-8989-exec-3] INFO  com.licenseservice.Service.LicenseService - using discovery client
 19:54:00.602 [http-nio-8989-exec-4] INFO  com.licenseservice.Service.LicenseService - using discovery client
 19:54:01.530 [http-nio-8989-exec-5] INFO  com.licenseservice.Service.LicenseService - using discovery client
+15:16:21.273 [http-nio-8989-exec-1] INFO  com.licenseservice.Controller.LicenseController - Entering the license-service-controller  
+15:16:35.951 [http-nio-8989-exec-2] INFO  com.licenseservice.Controller.LicenseController - Entering the license-service-controller  
+15:17:00.405 [http-nio-8989-exec-3] INFO  com.licenseservice.Controller.LicenseController - Entering the license-service-controller  
+15:17:20.479 [http-nio-8989-exec-4] INFO  com.licenseservice.Controller.LicenseController - Entering the license-service-controller  
+15:31:13.276 [http-nio-8989-exec-6] INFO  com.licenseservice.Controller.LicenseController - Entering the license-service-controller  
