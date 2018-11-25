@@ -3,6 +3,7 @@ package com.licenseservice.Service;
 import com.licenseservice.Client.OrganizationDiscoveryClient;
 import com.licenseservice.Client.OrganizationFeignClient;
 import com.licenseservice.Client.OrganizationRestTemplateClient;
+import com.licenseservice.Config.ServiceConfig;
 import com.licenseservice.Mapper.LicenseMapper;
 import com.licenseservice.Model.License;
 import com.licenseservice.Model.Organization;
@@ -28,6 +29,9 @@ public class LicenseService {
     @Autowired
     private OrganizationFeignClient feignClient = null;
 
+    @Autowired
+    private ServiceConfig serviceConfig = null;
+
     private Organization retrieveOrgInfo(Long organizationId, String clientType){
         Organization organization = null;
 
@@ -46,7 +50,6 @@ public class LicenseService {
                 organization = feignClient.getOrganization(organizationId);
         }
 
-
         return organization;
 
     }
@@ -60,6 +63,7 @@ public class LicenseService {
         license.setContactName(org.getContactName());
         license.setContactEmail(org.getContactEmail());
         license.setContactPhone(org.getContactPhone());
+        license.setComment(serviceConfig.getExampleProperty());
 
         return license;
     }
