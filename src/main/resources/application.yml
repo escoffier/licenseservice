@@ -39,7 +39,18 @@ spring:
     sampler:
       probability: 1.0
 
+  cloud:
+    stream:
+      bindings:
+        inboundOrgChanges:
+          destination: orgChangeTopic
+          content-type: application/json
+          group: licesinggroup
 
+      kafka:
+        binder:
+          brokers: 192.168.21.225:9092
+          zk-nodes: 192.168.21.225:2181
 #logging.path=logs
 logging:
   level:
