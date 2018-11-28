@@ -40,8 +40,18 @@ spring:
       probability: 1.0
 
 
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://192.168.21.120:8091/user
+
+logging.level.org.springframework.web: TRACE
+logging.level.org.springframework.http: TRACE
+logging.level.web: TRACE
+
 #logging.path=logs
 logging:
   level:
     org.springframework.cloud.config: DEBUG
+    org.springframework.web: DEBUG
 #logging.file=${logging.path}/licenseservice.log

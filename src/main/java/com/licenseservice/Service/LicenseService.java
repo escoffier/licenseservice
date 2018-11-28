@@ -1,5 +1,6 @@
 package com.licenseservice.Service;
 
+import com.licenseservice.Client.OrganizationAuthRestTemplateClient;
 import com.licenseservice.Client.OrganizationDiscoveryClient;
 import com.licenseservice.Client.OrganizationFeignClient;
 import com.licenseservice.Client.OrganizationRestTemplateClient;
@@ -27,6 +28,9 @@ public class LicenseService {
     private OrganizationRestTemplateClient restTemplateClient = null;
 
     @Autowired
+    private OrganizationAuthRestTemplateClient authRestTemplateClient = null;
+
+    @Autowired
     private OrganizationFeignClient feignClient = null;
 
     @Autowired
@@ -37,17 +41,20 @@ public class LicenseService {
 
         switch (clientType){
             case "discovery":
-                logger.info("using discovery client");
-                System.out.println("---discovery client");
+                logger.info("---discovery client");
                 organization = discoveryClient.getOrganization(organizationId);
                 break;
             case "rest":
-                System.out.println("---rest client");
+                logger.info("---rest client");
                 organization = restTemplateClient.getOrganization(organizationId);
                 break;
             case "feign":
-                System.out.println("---feign client");
+                logger.info("---feign client");
                 organization = feignClient.getOrganization(organizationId);
+                break;
+            case "authrest":
+                logger.info("---auth rest client");
+                organization = authRestTemplateClient.getOrganization(organizationId);
         }
 
         return organization;

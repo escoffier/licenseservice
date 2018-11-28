@@ -1,6 +1,5 @@
 package com.licenseservice.Config;
 
-import brave.propagation.CurrentTraceContext;
 import com.licenseservice.utils.UserContextInterceptor;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
@@ -11,9 +10,10 @@ import java.util.Collections;
 import java.util.List;
 
 @Configuration
+
 public class ClientConfig {
 
-    @Bean
+    @Bean("restTemplate")
     @LoadBalanced
     public  RestTemplate getRestTemplate(){
 
@@ -30,8 +30,4 @@ public class ClientConfig {
         return restTemplate;
     }
 
-//    @Bean
-//    CurrentTraceContext log4jTraceContext() {
-//        return MDCCurrentTraceContext.create();
-//    }
 }
