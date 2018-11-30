@@ -13,7 +13,7 @@ import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrganizationAuthRestTemplateClient {
+public class OrganizationAuthRestTemplateClient extends OrganizationClient{
 
 
         private final static Logger logger = LoggerFactory.getLogger(com.licenseservice.Client.OrganizationRestTemplateClient.class);
@@ -24,12 +24,23 @@ public class OrganizationAuthRestTemplateClient {
 
         public Organization getOrganization(Long organizationId) {
             //logger.debug("In Licensing Service.getOrganization: {}", UserContext.getCorrelationId());
+            Organization organization = checkRedisCache(organizationId);
+            if (organization != null){
+                logger.info("retrieve data from redis cache successfully");
+                return organization;
+            }
 
             ResponseEntity<Organization> responseEntity = auth2RestTemplate.exchange(
                     //"http://organizationservice/v1/organizations/{organizationId}",
                     "http://zuulservice/api/organization/v1/organizations/{organizationId}",
                     HttpMethod.GET, null, Organization.class, organizationId);
 
-            return responseEntity.getBody();
+            //return responseEntity.getBody();
+            organization = responseEntity.getBody();
+            if (organization != null){
+                cacheOrgObject(responseEntity.getBody());
+            }
+
+            return organization;
         }
 }
