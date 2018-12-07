@@ -1,5 +1,5 @@
 server:
-  port: 8989
+  port: 9989
 
 #spring.datasource.url=jdbc:mysql://192.168.21.225:3306/mytest
 #spring.datasource.username=testuser
@@ -54,7 +54,7 @@ spring:
 security:
   oauth2:
     resource:
-      user-info-uri: http://192.168.21.120:8091/user
+      user-info-uri: http://192.168.21.197:8091/user
 
 logging.level.org.springframework.web: TRACE
 logging.level.org.springframework.http: TRACE

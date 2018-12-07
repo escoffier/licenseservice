@@ -31,8 +31,8 @@ public class OrganizationAuthRestTemplateClient extends OrganizationClient{
             }
 
             ResponseEntity<Organization> responseEntity = auth2RestTemplate.exchange(
-                    //"http://organizationservice/v1/organizations/{organizationId}",
-                    "http://zuulservice/api/organization/v1/organizations/{organizationId}",
+                    "http://organizationservice/v1/organizations/{organizationId}",
+                    //"http://zuulservice/api/organization/v1/organizations/{organizationId}",
                     HttpMethod.GET, null, Organization.class, organizationId);
 
             //return responseEntity.getBody();

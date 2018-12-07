@@ -1,13 +1,14 @@
 package com.licenseservice.Service;
 
+import com.licenseservice.Client.FeignClient.OrganizationFeignClient;
 import com.licenseservice.Client.OrganizationAuthRestTemplateClient;
 import com.licenseservice.Client.OrganizationDiscoveryClient;
-import com.licenseservice.Client.OrganizationFeignClient;
 import com.licenseservice.Client.OrganizationRestTemplateClient;
 import com.licenseservice.Config.ServiceConfig;
 import com.licenseservice.Mapper.LicenseMapper;
 import com.licenseservice.Model.License;
 import com.licenseservice.Model.Organization;
+import feign.Feign;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,19 @@ public class LicenseService {
     @Autowired
     private OrganizationAuthRestTemplateClient authRestTemplateClient = null;
 
-    @Autowired
+    //@Autowired
     private OrganizationFeignClient feignClient = null;
+
+    @Autowired
+    public void FeignClient(OrganizationFeignClient cleint) {
+        feignClient = cleint;
+
+    }
+
+//    @Autowired
+//    public void setFeignClient() {
+//        feignClient = Feign.builder().requestInterceptor(OrganizationFeignClient.authRequestInterceptor()).target(OrganizationFeignClient.class, "http://organizationservice");
+//    }
 
     @Autowired
     private ServiceConfig serviceConfig = null;
@@ -50,7 +62,7 @@ public class LicenseService {
                 break;
             case "feign":
                 logger.info("---feign client");
-                organization = feignClient.getOrganization(organizationId);
+                organization = feignClient.getOrganization(organizationId.toString());
                 break;
             case "authrest":
                 logger.info("---auth rest client");

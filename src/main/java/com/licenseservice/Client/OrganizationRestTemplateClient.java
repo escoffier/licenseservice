@@ -43,24 +43,25 @@ public class OrganizationRestTemplateClient {
 
     public Organization getOrganization(Long organizationId) {
 
-        Organization organization = checkRedisCache(organizationId);
-        if (organization != null){
-            logger.info("retrieve data from redis cache successfully");
-            return organization;
-        }
+//        Organization organization = checkRedisCache(organizationId);
+//        if (organization != null){
+//            logger.info("retrieve data from redis cache successfully");
+//            return organization;
+//        }
 
         //logger.debug("In Licensing Service.getOrganization: {}", UserContext.getCorrelationId());
 
         ResponseEntity<Organization> responseEntity = restTemplate.exchange(
-                //"http://organizationservice/v1/organizations/{organizationId}",
-                "http://zuulservice/api/organization/v1/organizations/{organizationId}",
+                "http://organizationservice/v1/organizations/{organizationId}",
+                //"http://zuulservice/api/organization/v1/organizations/{organizationId}",
                 HttpMethod.GET, null, Organization.class, organizationId);
 
-        organization = responseEntity.getBody();
-        if (organization != null){
-            cacheOrgObject(responseEntity.getBody());
-        }
-
-        return organization;
+//        organization = responseEntity.getBody();
+//        if (organization != null){
+//            cacheOrgObject(responseEntity.getBody());
+//        }
+//
+//        return organization;
+        return responseEntity.getBody();
     }
 }
